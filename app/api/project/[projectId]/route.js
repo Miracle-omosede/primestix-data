@@ -2,6 +2,7 @@ import { sanityClient } from "@/lib/sanityClient";
 import { NextResponse } from "next/server";
 
 export async function GET(req, { params: { projectId } }) {
+  
   try {
     // This is the sanity query that fetches a single
     // data based on the `projectId` parameter
@@ -12,6 +13,7 @@ export async function GET(req, { params: { projectId } }) {
       name,
       description,
       location,
+      price,
       long,
       lat,
       faqs[]{question, answer},

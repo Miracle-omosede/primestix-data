@@ -32,7 +32,7 @@ export const useFilter = create((set, get) => ({
     set({ searchData: { ...prev, ...orderOfItems } });
   },
 
-  removeFilter: () => {
+  removeAllFilter: () => {
     set({
       searchData: {
         search: "",

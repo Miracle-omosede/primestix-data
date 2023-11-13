@@ -20,6 +20,8 @@ const Filter = () => {
   const [country, setCountry] = useState("");
   const [project_type, setProjectType] = useState("");
 
+  const [collapsedSelectOptions, setCollapsedSelectOptions] = useState(false);
+
   const handleSearchInput = useDebouncedCallback((e) => {
     setSearch(e.target.value);
   }, 500);
@@ -29,6 +31,13 @@ const Filter = () => {
   };
   const handleCountries = (e) => {
     setCountry(e.target.value);
+  };
+
+  const handleRemoveAllFilter = (e) => {
+    setSearch("");
+    setCountry("");
+    setProjectType("");
+    filter.removeAllFilter();
   };
 
   // Clicking the Search Button should update the UI.
@@ -125,6 +134,10 @@ const Filter = () => {
                 <option value={"turkey"}>Turkey</option>
               </select>
             </div>
+            <div className="cursor-pointer" onClick={() => setCollapsedSelectOptions(prev => !prev)}>
+              {/* Collapse filter select components */}
+              Here we collapse
+            </div>
           </div>
 
           <button
@@ -139,6 +152,8 @@ const Filter = () => {
               width={28}
             />
           </button>
+
+          <div>{/* Reset filter cmmand will be here */}</div>
         </div>
 
         <div className="text-black max-w-[970px] lg:max-w-[1170px] mx-auto flex items-center justify-end mt-4 h-[20px] w-full">

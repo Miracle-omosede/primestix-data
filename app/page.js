@@ -1,6 +1,7 @@
 import Filter from "@/components/Filter";
 import ProjectList from "../components/ProjectListClient";
 import Link from "next/link";
+import Team from "@/components/Team";
 
 // This is your landing page
 // You can start from here
@@ -13,6 +14,8 @@ export default function Home() {
       <Link className="text-[#cfba82]" href={"/projects"}>
         Go to product page here
       </Link>
+
+      <Team />
     </main>
   );
 }

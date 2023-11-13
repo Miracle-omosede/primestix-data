@@ -3,9 +3,15 @@ import { NextResponse } from "next/server";
 
 export async function GET(req) {
   try {
+    // Here we get our URL (req.url) in a readable browser url format like
+    // `/api/project?search=foo&country=bar&project_name=foo&orderOfItems=price%20asc`
     const searchURL = new URL(req.url);
 
     const { searchParams } = searchURL;
+
+    // These are the search query parameters gotten from the URL
+    // The searchParams.get() method will return an empty string if
+    // the user sends nothing.
 
     const searchTerm = searchParams.get("search");
     const country = searchParams.get("country");
@@ -21,28 +27,30 @@ export async function GET(req) {
     // although not entirely 😊
 
     const querySearch = `*[_type == 'project' && 
-  (name match $searchTerm || 
-   description match $searchTerm || 
-   location match $searchTerm)${country ? ` && country match $country` : ""}${
+      (name match $searchTerm || 
+      description match $searchTerm || 
+      location match $searchTerm)${
+        country ? ` && country match $country` : ""
+      }${
       projectType ? ` && projectType match $projectType` : ""
     }] | order(${orderOfItems})  {
-    _id,
-    name,
-    price,
-    description,
-    location,
-    projectType,
-    country,
-    long,
-    lat,
-    faqs[]{question, answer},
-    landmarks[]{title, description},
-    amenities[]{description},
-    gallery[]{ImageUrl {asset->{
-      url
-    }}},
-    createdAt
-}`;
+      _id,
+      name,
+      price,
+      description,
+      location,
+      projectType,
+      country,
+      long,
+      lat,
+      faqs[]{question, answer},
+      landmarks[]{title, description},
+      amenities[]{description},
+      gallery[]{ImageUrl {asset->{
+        url
+      }}},
+      createdAt
+    }`;
 
     const projects = await sanityClient.fetch(querySearch, {
       searchTerm: `${searchTerm}*`,

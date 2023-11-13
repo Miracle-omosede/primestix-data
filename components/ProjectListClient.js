@@ -27,7 +27,7 @@ const ProjectListClient = () => {
   useEffect(() => {
     const fetchProjectData = async () => {
       // Here we contruct our URL to a browser url readable format like
-      // `/api/project?search=foo&country=bar&project_name=foo&orderOfItems=createdAt+asc`
+      // `/api/project?search=foo&country=bar&project_name=foo&orderOfItems=price%20asc`
       const url = qs.stringifyUrl({
         url: "/api/project",
         query: {
@@ -37,6 +37,8 @@ const ProjectListClient = () => {
           orderOfItems,
         },
       });
+
+      console.log(url);
 
       try {
         // You know the drill with fetch...
@@ -57,6 +59,9 @@ const ProjectListClient = () => {
 
     fetchProjectData();
   }, [search, country, project_type, orderOfItems]);
+
+  // Comment out this part of the page when you are done...
+  // return <div className="flex items-center justify-center">There is no network in Project list page</div>;
 
   return (
     <div className="px-[20px] w-full -top-[37px] relative mt-10">
