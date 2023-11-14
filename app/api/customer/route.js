@@ -15,6 +15,8 @@ export const POST = async (res) => {
     phone,
     email,
     newsletterConfirmation, // Boolean
+    message,
+    subject,
   } = await res.json();
 
   const doc = {
@@ -25,6 +27,8 @@ export const POST = async (res) => {
     phone,
     email,
     newsletterConfirmation, // Boolean
+    message,
+    subject,
   };
 
   const response = await sanityClient.create(doc);
@@ -44,8 +48,8 @@ export const POST = async (res) => {
   const mailOptions = {
     from: email,
     to: "peteresezoborcode@gmail.com",
-    subject: "Sending Email using Node.js",
-    text: "That was easy!",
+    subject: subject,
+    text: message,
   };
 
   if (_id) {
@@ -68,6 +72,4 @@ export const POST = async (res) => {
       { status: 400 }
     );
   }
-
-  //   return NextResponse.json({}, { status: 200 });
 };
