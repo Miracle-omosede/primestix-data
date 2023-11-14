@@ -38,7 +38,6 @@ const ProjectListClient = () => {
         },
       });
 
-      console.log(url);
 
       try {
         // You know the drill with fetch...
