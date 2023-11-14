@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Additional API Endpoints:
 
-## Getting Started
+# User sending Email
+## `/api/customer`
+## POST Request
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Body data:
+```javascript
+{
+    initials: "string",
+    firstName: "string",
+    lastName: "string",
+    phone: "string",
+    email: "string",
+    newsletterConfirmation: "boolean", // true or false
+    message: "string",
+    subject: "subject",
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Response data:
+You will get either of the following:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```javascript
+{ message: "Message was sent successful." },
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+OR
 
-## Learn More
+```javascript
+{ message: "Message was not submitted successful. Try again." },
+```
+# User sending Newsletter
+## `/api/newsletter`
+## POST Request
+Send the user email to this above route
 
-To learn more about Next.js, take a look at the following resources:
+It will automaticatically create the newsletter email in the backend.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```javascript
+{
+    email: "string"
+}
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
 
-## Deploy on Vercel
+Response data:
+You will get either of the following:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```javascript
+{ message: "Message was sent successful." }
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+
+OR 
+
+```javascript
+{ message: "Message was not submitted successful. Try again." }
+```
+
+
+# Retrieving Team Data
+## `/api/team`
+## GET Request
+
+Response data:
+You will get either of the following:
+
+```javascript
+ { message: "Message was sent successful." }
+```
+
+OR
+
+```javascript
+{ message: "Message was not submitted successful. Try again." }
+```
+
