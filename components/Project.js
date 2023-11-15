@@ -31,7 +31,7 @@ const Project = ({ data }) => {
             {data.location}
           </h4>
 
-          <div>{data.price}</div>
+          <div><b>N </b>{data.price}</div>
 
           <p className="text-[#4a4a4a] text-[12px] font-bold h-[46px] mb-[1px] ">
             {data.description}
