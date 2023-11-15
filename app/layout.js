@@ -1,9 +1,9 @@
-import { Inter } from 'next/font/google'
+import FullScreenNavbar from '@/components/FullScreenNavbar'
 import './globals.css'
+import 'remixicon/fonts/remixicon.css'
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
-const inter = Inter({ subsets: ['latin'] })
-
-// Perform your SEO here if you'd like!
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,9 +14,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+      <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"></link> 
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"></link>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className="overflow-x-hidden">
+        <div className='fixed top-0 w-full bg-white z-[9999] shadow-lg'>
+        <FullScreenNavbar/>
+        </div>
+        {children}
+        </body>
     </html>
   )
 }
+
